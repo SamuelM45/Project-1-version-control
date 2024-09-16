@@ -15,7 +15,10 @@ def main():
     elif args.view:
         manager.view_tasks()
     elif args.delete is not None:
-        manager.delete_task(args.delete - 1)  # Adjust for zero-based index
+	if 0 <= args.delete - 1 < len(manager.tasks):
+	        manager.delete_task(args.delete - 1)  # Adjust for zero-based index
+	else:
+		print(f"Error: Task with index {args.delete} does not exist.")
     else:
         parser.print_help()
 
