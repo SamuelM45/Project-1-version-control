@@ -26,9 +26,10 @@ class TaskManager:
                 status = "completed" if task["completed"] else "incomplete"
                 file.write(f"{task['task']}|{status}\n")
 
-    def add_task(self, task):
-        self.tasks.insert(0, {"task": task, "completed": False})  # Deliberate error: insert at the start
-        self.save_tasks()
+def add_task(self, task):
+    self.tasks.insert(0, {"task": task, "completed": False})  # Change here: insert at the start
+    self.save_tasks()
+
 
     def view_tasks(self):
         if not self.tasks:
