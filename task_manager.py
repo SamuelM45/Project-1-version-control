@@ -20,11 +20,15 @@ class TaskManager:
         self.save_tasks()
 
     def view_tasks(self):
-        for index, task in enumerate(self.tasks, start=10):
+        for index, task in enumerate(self.tasks, start=1):  # Start at 1 for user-friendly indexing
             print(f"Task {index}: {task}")
 
     def delete_task(self, index):
-        if self.tasks:
-            self.tasks.pop(0)
+        if 0 <= index < len(self.tasks):
+            self.tasks.pop(index)
             self.save_tasks()
 
+    def edit_task(self, index, new_description):
+        if 0 <= index < len(self.tasks):
+            self.tasks[index] = new_description
+            self.save_tasks()
