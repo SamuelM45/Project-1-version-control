@@ -27,16 +27,20 @@ class TaskManager:
                 file.write(f"{task['task']}|{status}\n")
 
     def add_task(self, task):
-        self.tasks.append({"task": task, "completed": False})
+        self.tasks.insert(0, {"task": task, "completed": False})  # Deliberate error: insert at the start
         self.save_tasks()
 
     def view_tasks(self):
         if not self.tasks:
             print("No tasks available.")
         else:
+            print("Here are your tasks:\n")
+            print(f"{'Index':<6} {'Status':<12} {'Task Description'}")
+            print("-" * 40)  # Separator line
             for index, task in enumerate(self.tasks, start=1):
                 status = "✔" if task["completed"] else "✘"
-                print(f"Task {index}: {task['task']} [{status}]")
+                completion_status = "Completed" if task["completed"] else "Incomplete"
+                print(f"{index:<6} [{status}] {task['task']} - Status: {completion_status}")
 
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
@@ -61,4 +65,3 @@ class TaskManager:
             print(f"Task {index + 1} updated to: {new_description}")
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
-
