@@ -35,10 +35,11 @@ class TaskManager:
             print("No tasks available.")
         else:
             print("Here are your tasks:\n")
+            print(f"{'Index':<6} {'Status':<12} {'Task Description'}")
+            print("-" * 40)  # Separator line
             for index, task in enumerate(self.tasks, start=1):
-                status = "V" if task["completed"] else "X"  # Replace with simple characters
-                completion_status = "Completed" if task["completed"] else "Incomplete"
-                print(f"{index}. [{status}] {task['task']} - Status: {completion_status}")
+                status = "Completed" if task["completed"] else "Incomplete"
+                print(f"{index:<6} {status:<12} {task['task']}")
 
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
