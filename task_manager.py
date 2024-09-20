@@ -1,3 +1,4 @@
+#changed something. aka added a comment.
 class TaskManager:
     def __init__(self):
         self.task_file = 'tasks.txt'
@@ -13,7 +14,7 @@ class TaskManager:
                         parts = line.rsplit('|', 1)
                         if len(parts) == 2:  # Ensure line is correctly formatted
                             task, status = parts
-                            tasks.append({"task --- ": task, "completed": status == "completed"})  # Change here
+                            tasks.append({"task": task, "completed": status == "completed"})  # Change here
                         else:
                             print(f"Warning: Skipping improperly formatted line: {line}")
                 return tasks
