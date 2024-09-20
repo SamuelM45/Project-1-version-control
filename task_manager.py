@@ -1,4 +1,3 @@
-#changed something. aka added a comment.
 class TaskManager:
     def __init__(self):
         self.task_file = 'tasks.txt'
@@ -35,9 +34,14 @@ class TaskManager:
         if not self.tasks:
             print("No tasks available.")
         else:
+            print("Here are your tasks:\n")
+            print(f"{'Index':<6} {'Status':<12} {'Task Description'}")
+            print("-" * 40)  # Separator line
             for index, task in enumerate(self.tasks, start=1):
+                # Status representation
                 status = "✔" if task["completed"] else "✘"
-                print(f"Task {index}: {task['task']} [{status}]")  # Change here
+                completion_status = "Completed" if task["completed"] else "Incomplete"
+                print(f"{index:<6} [{status}] {task['task']} - Status: {completion_status}")
 
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
