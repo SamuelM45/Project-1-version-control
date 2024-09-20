@@ -35,19 +35,17 @@ class TaskManager:
         if not self.tasks:
             print("No tasks available.")
         else:
-            print("Here are your tasks:\n")
             for index, task in enumerate(self.tasks, start=1):
                 status = "✔" if task["completed"] else "✘"
-                print(f"{index}. [{status}] {task['task']} - Status: {'Completed' if task['completed'] else 'Incomplete'}")
+                print(f"Task {index}: {task['task']} [{status}]")
 
-    def delete_task(self):
-        # Change: Always deletes the first task in the list
-        if self.tasks:
-            removed_task = self.tasks.pop(0)  # Remove the first task
+    def delete_task(self, index):
+        if 0 <= index < len(self.tasks):
+            removed_task = self.tasks.pop(index)
             self.save_tasks()
             print(f"Task deleted: {removed_task['task']}")
         else:
-            print("Error: No tasks available to delete.")
+            print(f"Error: Task with index {index + 1} does not exist.")
 
     def complete_task(self, index):
         if 0 <= index < len(self.tasks):
@@ -64,3 +62,4 @@ class TaskManager:
             print(f"Task {index + 1} updated to: {new_description}")
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
+
