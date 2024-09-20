@@ -53,3 +53,12 @@ class TaskManager:
             print(f"Task {index + 1} marked as complete.")
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
+
+    def edit_task(self, index, new_description):
+        if 0 <= index < len(self.tasks):
+            self.tasks[index]["task"] = new_description
+            self.save_tasks()
+            print(f"Task {index + 1} updated to: {new_description}")
+        else:
+            print(f"Error: Task with index {index + 1} does not exist.")
+
