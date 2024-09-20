@@ -13,7 +13,7 @@ class TaskManager:
                         parts = line.rsplit('|', 1)
                         if len(parts) == 2:  # Ensure line is correctly formatted
                             task, status = parts
-                            tasks.append({"task": task, "completed": status == "completed"})
+                            tasks.append({"task": task, "completed": status == "completed"})  # Change here
                         else:
                             print(f"Warning: Skipping improperly formatted line: {line}")
                 return tasks
@@ -24,10 +24,10 @@ class TaskManager:
         with open(self.task_file, 'w') as file:
             for task in self.tasks:
                 status = "completed" if task["completed"] else "incomplete"
-                file.write(f"{task['task']}|{status}\n")
+                file.write(f"{task['task']}|{status}\n")  # Change here
 
     def add_task(self, task):
-        self.tasks.append({"task": task, "completed": False})
+        self.tasks.append({"task": task, "completed": False})  # Change here
         self.save_tasks()
 
     def view_tasks(self):
@@ -36,13 +36,13 @@ class TaskManager:
         else:
             for index, task in enumerate(self.tasks, start=1):
                 status = "✔" if task["completed"] else "✘"
-                print(f"Task {index}: {task['task']} [{status}]")
+                print(f"Task {index}: {task['task']} [{status}]")  # Change here
 
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
             removed_task = self.tasks.pop(index)
             self.save_tasks()
-            print(f"Task deleted: {removed_task['task']}")
+            print(f"Task deleted: {removed_task['task']}")  # Change here
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
 
@@ -56,9 +56,8 @@ class TaskManager:
 
     def edit_task(self, index, new_description):
         if 0 <= index < len(self.tasks):
-            self.tasks[index]["task"] = new_description
+            self.tasks[index]["task"] = new_description  # Change here
             self.save_tasks()
             print(f"Task {index + 1} updated to: {new_description}")
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
-
