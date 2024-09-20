@@ -34,9 +34,11 @@ class TaskManager:
         if not self.tasks:
             print("No tasks available.")
         else:
+            print("Here are your tasks:\n")
             for index, task in enumerate(self.tasks, start=1):
-                status = "✔" if task["completed"] else "✘"
-                print(f"Task {index}: {task['task']} [{status}]")
+                status = "V" if task["completed"] else "X"  # Replace with simple characters
+                completion_status = "Completed" if task["completed"] else "Incomplete"
+                print(f"{index}. [{status}] {task['task']} - Status: {completion_status}")
 
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
@@ -61,4 +63,3 @@ class TaskManager:
             print(f"Task {index + 1} updated to: {new_description}")
         else:
             print(f"Error: Task with index {index + 1} does not exist.")
-
